@@ -2,6 +2,9 @@ package cm.backend.ecommerce.models;
 
 import java.io.Serializable;
 
+import cm.backend.ecommerce.models.enumarations.Role;
+import cm.backend.ecommerce.models.enumarations.Statut;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -11,6 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Table(name = "users")
+@Entity
 @Data
 @Builder
 @AllArgsConstructor
