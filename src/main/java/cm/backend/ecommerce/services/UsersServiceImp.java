@@ -3,7 +3,6 @@ package cm.backend.ecommerce.services;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import cm.backend.ecommerce.dtos.UsersRequestDto;
 import cm.backend.ecommerce.dtos.UsersResponseDto;
@@ -52,7 +51,7 @@ public class UsersServiceImp implements IUsersService {
     private final MapperUsers mapperUsers;
 
     @Override
-    public UsersResponseDto createUser(@RequestBody UsersRequestDto dto) {
+    public UsersResponseDto createUser(UsersRequestDto dto) {
 
         var user = mapperUsers.toEntity(dto);
         /**
@@ -113,6 +112,11 @@ public class UsersServiceImp implements IUsersService {
         var user = usersRepository.findById((userId))
                 .orElseThrow(() -> new UserNotFoundException(UserUtils.USER_NOT_FOUND + userId));
         usersRepository.delete(user);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return usersRepository.existsByEmail(email);
     }
 
 }

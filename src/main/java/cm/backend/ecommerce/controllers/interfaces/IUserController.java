@@ -8,27 +8,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import cm.backend.ecommerce.dtos.UsersRequestDto;
+import jakarta.validation.Valid;
 
-@RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1")
 public interface IUserController {
 
-    @PostMapping
-    ResponseEntity<?> createUser(@RequestBody UsersRequestDto dto);
+    @PostMapping(value = "/users", consumes = "application/json")
+    ResponseEntity<?> createUser(@Valid @RequestBody UsersRequestDto dto);
 
-    @GetMapping("/{userId}")
+    @GetMapping("/users/{userId}")
     ResponseEntity<?> getUserById(@PathVariable Long userId);
 
-    @PutMapping("/{userId}")
+    @PutMapping("/users/{userId}")
     ResponseEntity<?> updateUser(@PathVariable Long userId, @RequestBody UsersRequestDto dto);
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/users/{userId}")
     ResponseEntity<?> deleteUser(@PathVariable Long userId);
 
-    @GetMapping
+    @GetMapping("/users")
     ResponseEntity<?> getAllUsers();
 
 }
