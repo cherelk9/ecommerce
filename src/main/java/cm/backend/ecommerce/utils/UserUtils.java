@@ -30,5 +30,7 @@ public class UserUtils {
     }
 
     public static String USER_NOT_FOUND = "User not found.";
+    public static String INVALIDE_EMAIL_FORMAT = "Invalid email format.";
+    public static String USER_EMAIL_ALREADY_EXISTS = "User email already exists.";
 
 }

@@ -3,12 +3,15 @@ package cm.backend.ecommerce.services;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import cm.backend.ecommerce.dtos.UsersRequestDto;
 import cm.backend.ecommerce.dtos.UsersResponseDto;
 import cm.backend.ecommerce.exceptions.UserNotFoundException;
 import cm.backend.ecommerce.mappper.interfaces.MapperUsers;
 import cm.backend.ecommerce.models.Users;
+import cm.backend.ecommerce.models.enumarations.Role;
+import cm.backend.ecommerce.models.enumarations.Statut;
 import cm.backend.ecommerce.repositories.UsersRepository;
 import cm.backend.ecommerce.services.interfaces.IUsersService;
 import cm.backend.ecommerce.utils.UserUtils;
@@ -49,12 +52,18 @@ public class UsersServiceImp implements IUsersService {
     private final MapperUsers mapperUsers;
 
     @Override
-    public UsersResponseDto createUser(UsersRequestDto dto) {
+    public UsersResponseDto createUser(@RequestBody UsersRequestDto dto) {
+
         var user = mapperUsers.toEntity(dto);
-        user.setAge(new Users().getAge());
-        user.setPassword(new Users().getPassword());
-        user.setRole(new Users().getRole());
-        user.setStatut(new Users().getStatut());
+        /**
+         * user.setAge(new Users().getAge());
+         * user.setPassword(new Users().getPassword());
+         * user.setRole(new Users().getRole());
+         * user.setStatut(new Users().getStatut());
+         */
+
+        user.setRole(Role.CUSTOMER);
+        user.setStatut(Statut.ACTIVE);
 
         var userSaved = usersRepository.save(user);
         return mapperUsers.toResponseDto(userSaved);
@@ -101,7 +110,7 @@ public class UsersServiceImp implements IUsersService {
 
     @Override
     public void deleteUser(Long userId) {
-        var user = usersRepository.findById(Long.valueOf(userId))
+        var user = usersRepository.findById((userId))
                 .orElseThrow(() -> new UserNotFoundException(UserUtils.USER_NOT_FOUND + userId));
         usersRepository.delete(user);
     }

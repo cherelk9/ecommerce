@@ -1,5 +1,7 @@
 package cm.backend.ecommerce.mappper;
 
+import org.springframework.stereotype.Component;
+
 import cm.backend.ecommerce.dtos.UsersRequestDto;
 import cm.backend.ecommerce.dtos.UsersResponseDto;
 import cm.backend.ecommerce.mappper.interfaces.MapperUsers;
@@ -17,6 +19,7 @@ import cm.backend.ecommerce.models.enumarations.Statut;
  * private Statut statut;
  */
 
+@Component
 public class MapperUsersImpl implements MapperUsers {
 
     @Override
