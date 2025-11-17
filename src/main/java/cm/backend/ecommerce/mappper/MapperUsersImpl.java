@@ -25,7 +25,6 @@ public class MapperUsersImpl implements MapperUsers {
     @Override
     public Users toEntity(UsersRequestDto dto) {
         Long userId = new Users().getUserId();
-        String password = new Users().getPassword();
         int age = new Users().getAge();
         Role role = new Users().getRole();
         Statut statut = new Users().getStatut();
@@ -34,7 +33,7 @@ public class MapperUsersImpl implements MapperUsers {
                 .userId(userId)
                 .username(dto.username())
                 .email(dto.email())
-                .password(password)
+                .password(dto.password())
                 .age(age)
                 .role(role)
                 .statut(statut)

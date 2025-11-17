@@ -38,20 +38,12 @@ public class UserControllerImp implements IUserController {
 
     @Override
     public ResponseEntity<?> updateUser(Long id, UsersRequestDto dto) {
-        /**
-         * var userExist = usersService.getUserById(id);
-         * if (userExist == null) {
-         * return new ResponseEntity<>(UserUtils.USER_NOT_FOUND, HttpStatus.NOT_FOUND);
-         * }
-         * return new ResponseEntity<>(usersService.updateUser(id, dto), HttpStatus.OK);
-         */
 
-        try {
-            usersService.getUserById(id);
-            return new ResponseEntity<>(usersService.updateUser(id, dto), HttpStatus.OK);
-        } catch (UserNotFoundException e) {
+        var userExist = usersService.getUserById(id);
+        if (userExist == null) {
             return new ResponseEntity<>(UserUtils.USER_NOT_FOUND, HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(usersService.updateUser(id, dto), HttpStatus.OK);
     }
 
     @Override

@@ -97,6 +97,7 @@ public class UsersServiceImp implements IUsersService {
          * var updatedUser = usersRepository.save(existingUser);
          */
         // return mapperUsers.toResponseDto(updatedUser);
+
         return usersRepository.findById(userId)
                 .map(user -> {
                     user.setUsername(dto.username());
