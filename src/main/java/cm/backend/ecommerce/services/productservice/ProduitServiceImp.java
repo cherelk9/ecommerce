@@ -82,10 +82,12 @@ public class ProduitServiceImp implements IProduitService {
     }
 
     @Override
-    public Function<List<Produit>, Integer> countAllProduitByCategory() {
+    public Function<List<Produit>, Integer> countAllProduitByCategory(String category) {
 
         return p -> {
-            p = produitRepository.findAll();
+            p = produitRepository.findAll().stream()
+                    .filter(prod -> prod.getCategory().equals(category))
+                    .toList();
             return p != null ? p.size() : 0;
         };
     }

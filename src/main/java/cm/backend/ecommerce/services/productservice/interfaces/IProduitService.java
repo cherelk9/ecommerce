@@ -22,6 +22,6 @@ public interface IProduitService {
 
     void deleteAllProductsByType(String type);
 
-    Function<List<Produit>, Integer> countAllProduitByCategory();
+    Function<List<Produit>, Integer> countAllProduitByCategory(String category);
 
 }
