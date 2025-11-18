@@ -83,20 +83,11 @@ public class ProduitServiceImp implements IProduitService {
 
     @Override
     public Function<List<Produit>, Integer> countAllProduitByCategory() {
-        
-        return p-> {
+
+        return p -> {
             p = produitRepository.findAll();
-
-            Function< List<Produit>, Integer> functionCount = e->{
-            var sum = 0;
-            for (var i = 0; i< e.size(); i++) {
-                sum += i;
-            }
-            return sum;
+            return p != null ? p.size() : 0;
         };
-
-            return p != null ? functionCount : 0;
-        }
     }
 
 }
