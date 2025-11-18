@@ -92,4 +92,10 @@ public class ProduitServiceImp implements IProduitService {
         };
     }
 
+    @Override
+    public Optional<ProduitResponse> getProductByType(String type) {
+        return produitRepository.findByName(type)
+                .map(mapperProduit::mapperProduitResponse);
+    }
+
 }

@@ -14,6 +14,8 @@ public interface IProduitService {
 
     Optional<ProduitResponse> getProductByName(String name);
 
+    Optional<ProduitResponse> getProductByType(String type);
+
     ProduitResponse createProduct(ProduitRequest produitRequest);
 
     ProduitResponse updateProduct(String name, ProduitRequest produitRequest);
