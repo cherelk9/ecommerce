@@ -22,8 +22,8 @@ public interface IProduitController {
     @GetMapping("/products/{name}")
     ResponseEntity<?> getProductByName(@PathVariable("name") String name);
 
-    @PutMapping("/products/{name}")
-    ResponseEntity<?> updateProduct(@PathVariable("name") String name,
+    @PutMapping("/products/{productId}")
+    ResponseEntity<?> updateProduct(@PathVariable("productId") Long name,
             @Valid @RequestBody ProduitRequest produitRequest);
 
     @DeleteMapping("/products/{name}")

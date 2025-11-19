@@ -18,7 +18,7 @@ public interface IProduitService {
 
     ProduitResponse createProduct(ProduitRequest produitRequest);
 
-    ProduitResponse updateProduct(String name, ProduitRequest produitRequest);
+    ProduitResponse updateProduct(Long productId, ProduitRequest produitRequest);
 
     void deleteProduct(String name);
 

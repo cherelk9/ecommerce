@@ -10,7 +10,6 @@ import cm.backend.ecommerce.services.productservice.interfaces.IProduitService;
 import cm.backend.ecommerce.utils.ProductUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.var;
 
 @RestController
 @RequiredArgsConstructor
@@ -44,8 +43,8 @@ public class ProduitController implements IProduitController {
     }
 
     @Override
-    public ResponseEntity<?> updateProduct(String name, @Valid ProduitRequest produitRequest) {
-        return produitService.updateProduct(name, produitRequest) != null
+    public ResponseEntity<?> updateProduct(Long productId, @Valid ProduitRequest produitRequest) {
+        return produitService.updateProduct(productId, produitRequest) != null
                 ? ResponseEntity.ok(produitService.updateProduct(name, produitRequest))
                 : ResponseEntity.notFound().build();
     }

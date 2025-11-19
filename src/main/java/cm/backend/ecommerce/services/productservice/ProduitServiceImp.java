@@ -1,5 +1,6 @@
 package cm.backend.ecommerce.services.productservice;
 
+import java.time.Year;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -49,20 +50,28 @@ public class ProduitServiceImp implements IProduitService {
     }
 
     @Override
-    public ProduitResponse updateProduct(String name, ProduitRequest produitRequest) {
-        return produitRepository.findByName(name).map(
+    public ProduitResponse updateProduct(Long productId, ProduitRequest produitRequest) {
+
+        return produitRepository.findById(productId).map(
                 prod -> {
 
-                    prod.setName(produitRequest.name());
-                    prod.setDescription(new Produit().getDescription());
-                    prod.setPrice(new Produit().getPrice());
-                    prod.setPublicationDate(produitRequest.publicationDate());
-                    prod.setYearPublication(produitRequest.publicationYear());
+                    prod.setName(produitRequest.getName());
+                    prod.setType(produitRequest.getType());
+                    prod.setCategory(produitRequest.getCategory());
+                    prod.setDescription(produitRequest.getDescription());
+                    prod.setPrice(produitRequest.getPrice());
+                    prod.setPublicationDate(produitRequest.getPublicationDate());
+
+                    if (produitRequest.getPublicationDate() != null) {
+                        prod.setYearPublication(Year.from(produitRequest.getPublicationDate()));
+                    } else {
+                        prod.setYearPublication(null);
+                    }
 
                     var produit = produitRepository.save(prod);
                     return mapperProduit.mapperProduitResponse(produit);
-
                 }).orElseThrow(() -> new ProductNotFoundException(ProductUtils.PRODUCT_NOT_FOUND + name));
+
     }
 
     @Override
