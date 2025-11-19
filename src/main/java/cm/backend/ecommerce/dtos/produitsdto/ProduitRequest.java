@@ -1,15 +1,20 @@
 package cm.backend.ecommerce.dtos.produitsdto;
 
-import java.time.Year;
-import java.util.Date;
+import java.time.Instant;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Builder
-public record ProduitRequest(
-        String name,
-        String type,
-        String category,
-        Date publicationDate,
-        Year publicationYear) {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProduitRequest {
+    private String name;
+    private String type;
+    private String category;
+    private String description;
+    private Double price;
+    private Instant publicationDate;
+
 }

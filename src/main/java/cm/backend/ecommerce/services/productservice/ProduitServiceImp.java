@@ -1,9 +1,7 @@
 package cm.backend.ecommerce.services.productservice;
 
-import java.time.Year;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 import org.springframework.stereotype.Service;
 
@@ -42,36 +40,30 @@ public class ProduitServiceImp implements IProduitService {
     @Override
     public ProduitResponse createProduct(ProduitRequest produitRequest) {
 
-        var produit = mapperProduit.toEntity(produitRequest);
-        produit.setPrice(new Produit().getPrice());
-        produit.setDescription(new Produit().getDescription());
+        if (produitRequest != null) {
+            throw new IllegalArgumentException(ProductUtils.PRODUCT_NAME_CANNOT_BE_NULL_OR_EMPTY);
+        }
 
-        return mapperProduit.mapperProduitResponse(produit);
+        return mapperProduit.mapperProduitResponse(
+                produitRepository.save(
+                        mapperProduit.toEntity(produitRequest)));
     }
 
     @Override
-    public ProduitResponse updateProduct(Long productId, ProduitRequest produitRequest) {
-
-        return produitRepository.findById(productId).map(
+    public ProduitResponse updateProduct(String name, ProduitRequest produitRequest) {
+        return produitRepository.findByName(name).map(
                 prod -> {
 
-                    prod.setName(produitRequest.getName());
-                    prod.setType(produitRequest.getType());
-                    prod.setCategory(produitRequest.getCategory());
-                    prod.setDescription(produitRequest.getDescription());
-                    prod.setPrice(produitRequest.getPrice());
-                    prod.setPublicationDate(produitRequest.getPublicationDate());
-
-                    if (produitRequest.getPublicationDate() != null) {
-                        prod.setYearPublication(Year.from(produitRequest.getPublicationDate()));
-                    } else {
-                        prod.setYearPublication(null);
-                    }
+                    prod.setName(produitRequest.name());
+                    prod.setDescription(new Produit().getDescription());
+                    prod.setPrice(new Produit().getPrice());
+                    prod.setPublicationDate(produitRequest.publicationDate());
+                    prod.setYearPublication(produitRequest.publicationYear());
 
                     var produit = produitRepository.save(prod);
                     return mapperProduit.mapperProduitResponse(produit);
-                }).orElseThrow(() -> new ProductNotFoundException(ProductUtils.PRODUCT_NOT_FOUND + name));
 
+                }).orElseThrow(() -> new ProductNotFoundException(ProductUtils.PRODUCT_NOT_FOUND + name));
     }
 
     @Override
@@ -91,14 +83,11 @@ public class ProduitServiceImp implements IProduitService {
     }
 
     @Override
-    public Function<List<Produit>, Integer> countAllProduitByCategory(String category) {
+    public int countAllProduitByCategory(String category) {
 
-        return p -> {
-            p = produitRepository.findAll().stream()
-                    .filter(prod -> prod.getCategory().equals(category))
-                    .toList();
-            return p != null ? p.size() : 0;
-        };
+        return (int) produitRepository.findAll().stream()
+                .filter(p -> p.getCategory().equals(category))
+                .count();
     }
 
     @Override

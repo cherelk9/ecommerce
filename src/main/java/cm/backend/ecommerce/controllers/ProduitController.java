@@ -1,5 +1,6 @@
 package cm.backend.ecommerce.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,13 +19,12 @@ public class ProduitController implements IProduitController {
     private final IProduitService produitService;
 
     @Override
-    public ResponseEntity<?> createProduct(@Valid ProduitRequest produitRequest) {
-
-        if (produitRequest != null) {
-            return ResponseEntity.badRequest().body("ProduitRequest cannot be null");
+    public ResponseEntity<?> createProduct(ProduitRequest produitRequest) {
+        if (produitRequest.getName() == null || produitRequest.getName().isBlank()) {
+            throw new IllegalArgumentException(ProductUtils.PRODUCT_NAME_CANNOT_BE_NULL_OR_EMPTY);
         }
-        var produitResponse = produitService.createProduct(produitRequest);
-        return ResponseEntity.ok(produitResponse);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(produitService.createProduct(produitRequest));
     }
 
     @Override
@@ -70,7 +70,7 @@ public class ProduitController implements IProduitController {
 
     @Override
     public ResponseEntity<?> countProducts(String category) {
-        var count = produitService.countAllProduitByCategory(category);
+        int count = produitService.countAllProduitByCategory(category);
         return ResponseEntity.ok().body("Total products count: " + count);
     }
 
