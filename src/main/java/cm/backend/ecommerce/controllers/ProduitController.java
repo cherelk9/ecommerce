@@ -6,13 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cm.backend.ecommerce.controllers.interfaces.IProduitController;
 import cm.backend.ecommerce.dtos.produitsdto.ProduitRequest;
-import cm.backend.ecommerce.dtos.produitsdto.ProduitResponse;
 import cm.backend.ecommerce.exceptions.ProductNotFoundException;
 import cm.backend.ecommerce.services.productservice.interfaces.IProduitService;
 import cm.backend.ecommerce.utils.ProductUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.var;
 
 @RestController
 @RequiredArgsConstructor
@@ -44,9 +42,11 @@ public class ProduitController implements IProduitController {
                 : ResponseEntity.notFound().build();
     }
 
-    public ResponseEntity<?> updateProduct(String name, @Valid ProduitRequest request) {
-        ProduitResponse response = produitService.updateProduct(name, request);
-        return ResponseEntity.ok(response);
+    @Override
+    public ResponseEntity<?> updateProduct(String name, @Valid ProduitRequest produitRequest) {
+        return produitService.updateProduct(name, produitRequest) != null
+                ? ResponseEntity.ok(produitService.updateProduct(name, produitRequest))
+                : ResponseEntity.notFound().build();
     }
 
     @Override
