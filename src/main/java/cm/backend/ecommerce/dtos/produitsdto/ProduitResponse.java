@@ -1,23 +1,28 @@
 package cm.backend.ecommerce.dtos.produitsdto;
 
+import java.time.Instant;
 import java.time.Year;
-import java.util.Date;
 
-import jakarta.annotation.Nonnull;
-import jakarta.validation.constraints.NotBlank;
-import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Builder
-public record ProduitResponse(
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProduitResponse {
 
-                @Nonnull @NotBlank String name,
+        private String name;
 
-                @Nonnull @NotBlank String type,
+        private String type;
 
-                @NotBlank String category,
+        private String category;
 
-                String description,
-                Double price,
-                Date publicationDate,
-                Year publicationYear) {
+        private String description;
+
+        private Double price;
+
+        private Instant publicationDate;
+
+        private Year publicationYear;
 }

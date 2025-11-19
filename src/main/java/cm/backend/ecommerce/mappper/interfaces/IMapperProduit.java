@@ -8,10 +8,6 @@ public interface IMapperProduit {
 
     Produit toEntity(ProduitRequest dto);
 
-    ProduitRequest dto(Produit produit);
-
-    Produit toEntity(ProduitResponse produitResponse);
-
     ProduitResponse mapperProduitResponse(Produit produit);
 
 }

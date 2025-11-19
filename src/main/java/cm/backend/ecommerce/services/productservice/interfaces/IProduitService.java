@@ -2,11 +2,9 @@ package cm.backend.ecommerce.services.productservice.interfaces;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 import cm.backend.ecommerce.dtos.produitsdto.ProduitRequest;
 import cm.backend.ecommerce.dtos.produitsdto.ProduitResponse;
-import cm.backend.ecommerce.models.produit.enumarations.Produit;
 
 public interface IProduitService {
 
@@ -24,6 +22,6 @@ public interface IProduitService {
 
     void deleteAllProductsByType(String type);
 
-    Function<List<Produit>, Integer> countAllProduitByCategory(String category);
+    int countAllProduitByCategory(String category);
 
 }

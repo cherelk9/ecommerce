@@ -57,7 +57,7 @@ public class ProduitServiceImp implements IProduitService {
         Produit existingProduct = produitRepository.findByName(name)
                 .orElseThrow(() -> new ProductNotFoundException(ProductUtils.PRODUCT_NOT_FOUND + name));
 
-        // Mise à jour des champs si envoys
+        // Mise à jour des champs si envoyés dans la requête
         if (request.getType() != null)
             existingProduct.setType(request.getType());
         if (request.getCategory() != null)

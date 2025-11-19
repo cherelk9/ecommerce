@@ -1,10 +1,12 @@
 package cm.backend.ecommerce.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import cm.backend.ecommerce.controllers.interfaces.IProduitController;
 import cm.backend.ecommerce.dtos.produitsdto.ProduitRequest;
+import cm.backend.ecommerce.dtos.produitsdto.ProduitResponse;
 import cm.backend.ecommerce.exceptions.ProductNotFoundException;
 import cm.backend.ecommerce.services.productservice.interfaces.IProduitService;
 import cm.backend.ecommerce.utils.ProductUtils;
@@ -19,13 +21,12 @@ public class ProduitController implements IProduitController {
     private final IProduitService produitService;
 
     @Override
-    public ResponseEntity<?> createProduct(@Valid ProduitRequest produitRequest) {
-
-        if (produitRequest != null) {
-            return ResponseEntity.badRequest().body("ProduitRequest cannot be null");
+    public ResponseEntity<?> createProduct(ProduitRequest produitRequest) {
+        if (produitRequest.getName() == null || produitRequest.getName().isBlank()) {
+            throw new IllegalArgumentException(ProductUtils.PRODUCT_NAME_CANNOT_BE_NULL_OR_EMPTY);
         }
-        var produitResponse = produitService.createProduct(produitRequest);
-        return ResponseEntity.ok(produitResponse);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(produitService.createProduct(produitRequest));
     }
 
     @Override
@@ -43,11 +44,9 @@ public class ProduitController implements IProduitController {
                 : ResponseEntity.notFound().build();
     }
 
-    @Override
-    public ResponseEntity<?> updateProduct(String name, @Valid ProduitRequest produitRequest) {
-        return produitService.updateProduct(name, produitRequest) != null
-                ? ResponseEntity.ok(produitService.updateProduct(name, produitRequest))
-                : ResponseEntity.notFound().build();
+    public ResponseEntity<?> updateProduct(String name, @Valid ProduitRequest request) {
+        ProduitResponse response = produitService.updateProduct(name, request);
+        return ResponseEntity.ok(response);
     }
 
     @Override
@@ -71,7 +70,7 @@ public class ProduitController implements IProduitController {
 
     @Override
     public ResponseEntity<?> countProducts(String category) {
-        var count = produitService.countAllProduitByCategory(category);
+        int count = produitService.countAllProduitByCategory(category);
         return ResponseEntity.ok().body("Total products count: " + count);
     }
 

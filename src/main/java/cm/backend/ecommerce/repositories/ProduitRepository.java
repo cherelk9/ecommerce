@@ -13,9 +13,11 @@ public interface ProduitRepository extends JpaRepository<Produit, Long> {
 
     Optional<Produit> getByName(String name);
 
-    Consumer<? super Produit> deleteAllByName(String name);
+    Consumer<Produit> deleteAllByName(String name);
 
     Optional<Produit> existsByType(String type);
+
+    Boolean existsByName(String name);
 
     boolean existsByCategory(String category);
 
