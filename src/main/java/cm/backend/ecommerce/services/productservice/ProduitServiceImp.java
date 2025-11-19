@@ -2,9 +2,9 @@ package cm.backend.ecommerce.services.productservice;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cm.backend.ecommerce.dtos.produitsdto.ProduitRequest;
 import cm.backend.ecommerce.dtos.produitsdto.ProduitResponse;
@@ -41,28 +41,35 @@ public class ProduitServiceImp implements IProduitService {
     @Override
     public ProduitResponse createProduct(ProduitRequest produitRequest) {
 
-        var produit = mapperProduit.toEntity(produitRequest);
-        produit.setPrice(new Produit().getPrice());
-        produit.setDescription(new Produit().getDescription());
+        if (produitRequest != null) {
+            throw new IllegalArgumentException(ProductUtils.PRODUCT_NAME_CANNOT_BE_NULL_OR_EMPTY);
+        }
 
-        return mapperProduit.mapperProduitResponse(produit);
+        return mapperProduit.mapperProduitResponse(
+                produitRepository.save(
+                        mapperProduit.toEntity(produitRequest)));
     }
 
     @Override
-    public ProduitResponse updateProduct(String name, ProduitRequest produitRequest) {
-        return produitRepository.findByName(name).map(
-                prod -> {
+    @Transactional
+    public ProduitResponse updateProduct(String name, ProduitRequest request) {
 
-                    prod.setName(produitRequest.name());
-                    prod.setDescription(new Produit().getDescription());
-                    prod.setPrice(new Produit().getPrice());
-                    prod.setPublicationDate(produitRequest.publicationDate());
-                    prod.setYearPublication(produitRequest.publicationYear());
+        Produit existingProduct = produitRepository.findByName(name)
+                .orElseThrow(() -> new ProductNotFoundException(ProductUtils.PRODUCT_NOT_FOUND + name));
 
-                    var produit = produitRepository.save(prod);
-                    return mapperProduit.mapperProduitResponse(produit);
+        // Mise à jour des champs si envoys
+        if (request.getType() != null)
+            existingProduct.setType(request.getType());
+        if (request.getCategory() != null)
+            existingProduct.setCategory(request.getCategory());
+        if (request.getDescription() != null)
+            existingProduct.setDescription(request.getDescription());
+        if (request.getPrice() != null)
+            existingProduct.setPrice(request.getPrice());
 
-                }).orElseThrow(() -> new ProductNotFoundException(ProductUtils.PRODUCT_NOT_FOUND + name));
+        Produit saved = produitRepository.save(existingProduct);
+
+        return mapperProduit.mapperProduitResponse(saved);
     }
 
     @Override
@@ -82,14 +89,11 @@ public class ProduitServiceImp implements IProduitService {
     }
 
     @Override
-    public Function<List<Produit>, Integer> countAllProduitByCategory(String category) {
+    public int countAllProduitByCategory(String category) {
 
-        return p -> {
-            p = produitRepository.findAll().stream()
-                    .filter(prod -> prod.getCategory().equals(category))
-                    .toList();
-            return p != null ? p.size() : 0;
-        };
+        return (int) produitRepository.findAll().stream()
+                .filter(p -> p.getCategory().equals(category))
+                .count();
     }
 
     @Override
