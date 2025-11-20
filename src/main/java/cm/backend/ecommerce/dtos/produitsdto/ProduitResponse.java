@@ -13,16 +13,11 @@ import lombok.NoArgsConstructor;
 public class ProduitResponse {
 
         private String name;
-
         private String type;
-
         private String category;
-
         private String description;
-
         private Double price;
-
         private Instant publicationDate;
-
         private Year publicationYear;
+
 }

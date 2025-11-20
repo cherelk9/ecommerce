@@ -7,14 +7,16 @@ import org.springframework.stereotype.Service;
 
 import cm.backend.ecommerce.dtos.produitsdto.ProduitRequest;
 import cm.backend.ecommerce.dtos.produitsdto.ProduitResponse;
-import cm.backend.ecommerce.exceptions.ProductNotFoundException;
 import cm.backend.ecommerce.mappper.interfaces.IMapperProduit;
 import cm.backend.ecommerce.models.produit.enumarations.Produit;
 import cm.backend.ecommerce.repositories.ProduitRepository;
 import cm.backend.ecommerce.services.productservice.interfaces.IProduitService;
 import cm.backend.ecommerce.utils.ProductUtils;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProduitServiceImp implements IProduitService {
@@ -41,29 +43,12 @@ public class ProduitServiceImp implements IProduitService {
     public ProduitResponse createProduct(ProduitRequest produitRequest) {
 
         if (produitRequest != null) {
-            throw new IllegalArgumentException(ProductUtils.PRODUCT_NAME_CANNOT_BE_NULL_OR_EMPTY);
+            log.info(ProductUtils.PRODUCT_NAME_CANNOT_BE_NULL_OR_EMPTY);
         }
 
         return mapperProduit.mapperProduitResponse(
                 produitRepository.save(
                         mapperProduit.toEntity(produitRequest)));
-    }
-
-    @Override
-    public ProduitResponse updateProduct(String name, ProduitRequest produitRequest) {
-        return produitRepository.findByName(name).map(
-                prod -> {
-
-                    prod.setName(produitRequest.name());
-                    prod.setDescription(new Produit().getDescription());
-                    prod.setPrice(new Produit().getPrice());
-                    prod.setPublicationDate(produitRequest.publicationDate());
-                    prod.setYearPublication(produitRequest.publicationYear());
-
-                    var produit = produitRepository.save(prod);
-                    return mapperProduit.mapperProduitResponse(produit);
-
-                }).orElseThrow(() -> new ProductNotFoundException(ProductUtils.PRODUCT_NOT_FOUND + name));
     }
 
     @Override
@@ -94,6 +79,27 @@ public class ProduitServiceImp implements IProduitService {
     public Optional<ProduitResponse> getProductByType(String type) {
         return produitRepository.findByName(type)
                 .map(mapperProduit::mapperProduitResponse);
+    }
+
+    @Override
+    @Transactional
+    public void updateProduct(Long productId, ProduitRequest produitRequest) {
+
+        if (produitRequest == null) {
+            log.info(ProductUtils.PRODUCT_REQUEST_CANNOT_BE_NULL);
+        }
+
+        produitRepository.findById(productId).ifPresent(
+                p -> {
+                    Produit e = mapperProduit.toEntity(produitRequest);
+                    p.setName(e.getName());
+                    p.setType(e.getType());
+                    p.setCategory(e.getCategory());
+                    p.setDescription(e.getDescription());
+                    p.setPrice(e.getPrice());
+                    produitRepository.save(p);
+
+                });
     }
 
 }

@@ -9,7 +9,6 @@ import cm.backend.ecommerce.dtos.produitsdto.ProduitRequest;
 import cm.backend.ecommerce.exceptions.ProductNotFoundException;
 import cm.backend.ecommerce.services.productservice.interfaces.IProduitService;
 import cm.backend.ecommerce.utils.ProductUtils;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -43,10 +42,9 @@ public class ProduitController implements IProduitController {
     }
 
     @Override
-    public ResponseEntity<?> updateProduct(Long productId, @Valid ProduitRequest produitRequest) {
-        return produitService.updateProduct(productId, produitRequest) != null
-                ? ResponseEntity.ok(produitService.updateProduct(name, produitRequest))
-                : ResponseEntity.notFound().build();
+    public ResponseEntity<?> updateProduct(Long productId, ProduitRequest produitRequest) {
+        produitService.updateProduct(productId, produitRequest);
+        return ResponseEntity.ok().body("Product updated successfully");
     }
 
     @Override

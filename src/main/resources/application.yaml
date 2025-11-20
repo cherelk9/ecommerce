@@ -21,6 +21,21 @@ spring:
             path: /api/v1  
 
 
+logging:
+    level:
+        com:
+            ecommerce : DEBUG
+        org:
+            springframework : INFO
+            hibernate : WARN
+
+
+    file: 
+        name: application.log
+
+
+    pattern:
+        console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
 
 
