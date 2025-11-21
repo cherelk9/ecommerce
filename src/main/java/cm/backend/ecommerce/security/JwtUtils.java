@@ -43,10 +43,10 @@ public class JwtUtils {
         Date expiration = new Date(now.getTime() + expirationMs);
 
         return Jwts.builder()
-                .subject(username)
+                .setSubject(username)
                 .claim("role", authorities)
-                .issuedAt(now)
-                .expiration(expiration)
+                .setIssuedAt(now)
+                .setExpiration(expiration)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
