@@ -10,7 +10,7 @@ spring:
 
     jpa:
         hibernate:
-            ddl-auto: update
+            ddl-auto: create-drop
         show-sql: true
         properties:
             hibernate:
@@ -18,7 +18,7 @@ spring:
 
     security:
         user:
-            name: cherel
+            name: cherel@gmail.com
             password: l@o_nel_123
 
     mvc.servlet.path: /api/v1  

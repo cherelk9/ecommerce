@@ -2,6 +2,8 @@ package cm.backend.ecommerce.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cm.backend.ecommerce.controllers.interfaces.IUserController;
@@ -20,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/admin")
 @Tag(name = "users", description = "API pour la gestion des utilisateur (CRUD, recherche, suppression, statistiques)")
 public class UserControllerImp implements IUserController {
 
@@ -31,6 +34,7 @@ public class UserControllerImp implements IUserController {
             @ApiResponse(responseCode = "404", description = "Utilisateur introuvable avec l’ID fourni", content = @Content),
             @ApiResponse(responseCode = "400", description = "ID fourni invalide", content = @Content)
     })
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Override
     public ResponseEntity<?> getUserById(Long id) {
         try {
@@ -47,6 +51,7 @@ public class UserControllerImp implements IUserController {
             @ApiResponse(responseCode = "404", description = "Utilisateur introuvable avec cet ID", content = @Content),
             @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content)
     })
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Override
     public ResponseEntity<?> updateUser(Long id, UsersRequestDto dto) {
 
@@ -64,6 +69,7 @@ public class UserControllerImp implements IUserController {
             @ApiResponse(responseCode = "400", description = "ID fourni invalide", content = @Content),
             @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content)
     })
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Override
     public ResponseEntity<?> deleteUser(Long id) {
         var userExist = usersService.getUserById(id);
@@ -79,6 +85,7 @@ public class UserControllerImp implements IUserController {
             @ApiResponse(responseCode = "200", description = "Liste des utilisateurs retournée", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UsersResponseDto.class)))),
             @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content)
     })
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Override
     public ResponseEntity<?> getAllUsers() {
         return usersService.getAllUsers() != null

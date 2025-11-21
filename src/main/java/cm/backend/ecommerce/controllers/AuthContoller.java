@@ -53,7 +53,7 @@ public class AuthContoller {
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
         try {
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
+                    new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
             String token = jwtUtils.generateToken(authentication);
             return ResponseEntity.ok().body(new JwtResponse(token));
         } catch (AuthenticationException ex) {
@@ -87,7 +87,7 @@ public class AuthContoller {
         return ResponseEntity.status(201).body(response);
     }
 
-    record LoginRequest(String email, String password) {
+    public record LoginRequest(String username, String password) {
     }
 
     public record JwtResponse(String token) {
