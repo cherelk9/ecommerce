@@ -2,6 +2,8 @@ package cm.backend.ecommerce.utils;
 
 public class UserUtils {
 
+    public static final Object EXIST_By_NAME_OR_EMAIL = null;
+
     public static boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         return email != null && email.matches(emailRegex);

@@ -1,4 +1,4 @@
-package cm.backend.ecommerce.security;
+package cm.backend.ecommerce.utils;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
