@@ -2266,3 +2266,32 @@ cm.backend.ecommerce.exceptions.UserNotFoundException: User not found.2
 2025-11-21T15:33:14.000+01:00  INFO 184180 --- [ecommerce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-11-21T15:33:14.009+01:00  INFO 184180 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-11-21T15:33:14.034+01:00  INFO 184180 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-21T16:29:57.686+01:00  INFO 227083 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 17.0.16 with PID 227083 (/home/elembe/Documents/ecommerce/ecommerce/target/classes started by elembe in /home/elembe/Documents/ecommerce/ecommerce)
+2025-11-21T16:29:57.691+01:00  INFO 227083 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-21T16:29:58.510+01:00  INFO 227083 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-21T16:29:58.573+01:00  INFO 227083 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 2 JPA repository interfaces.
+2025-11-21T16:29:59.061+01:00  INFO 227083 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-21T16:29:59.079+01:00  INFO 227083 --- [ecommerce] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-21T16:29:59.079+01:00  INFO 227083 --- [ecommerce] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-21T16:29:59.164+01:00  INFO 227083 --- [ecommerce] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-21T16:29:59.164+01:00  INFO 227083 --- [ecommerce] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1402 ms
+2025-11-21T16:29:59.631+01:00  INFO 227083 --- [ecommerce] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-21T16:29:59.661+01:00  INFO 227083 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-21T16:30:00.052+01:00  INFO 227083 --- [ecommerce] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@380e33c2
+2025-11-21T16:30:00.055+01:00  INFO 227083 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-21T16:30:00.102+01:00  WARN 227083 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-21T16:30:00.103+01:00  WARN 227083 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-21T16:30:00.834+01:00  INFO 227083 --- [ecommerce] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T16:30:01.227+01:00  WARN 227083 --- [ecommerce] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-21T16:30:01.297+01:00  INFO 227083 --- [ecommerce] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-11-21T16:30:01.701+01:00  INFO 227083 --- [ecommerce] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-11-21T16:30:01.872+01:00  INFO 227083 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-21T16:30:01.888+01:00  INFO 227083 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Started EcommerceApplication in 4.746 seconds (process running for 5.284)
+2025-11-21T16:30:27.744+01:00  INFO 227083 --- [ecommerce] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-21T16:30:27.746+01:00  INFO 227083 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-21T16:30:27.749+01:00  INFO 227083 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-11-21T16:31:05.314+01:00  INFO 227083 --- [ecommerce] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-21T16:31:05.335+01:00  INFO 227083 --- [ecommerce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-21T16:31:05.342+01:00  INFO 227083 --- [ecommerce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T16:31:05.345+01:00  INFO 227083 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-21T16:31:05.389+01:00  INFO 227083 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

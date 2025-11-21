@@ -16,7 +16,18 @@ spring:
             hibernate:
                 dialect: org.hibernate.dialect.MySQL8Dialect  
 
+    security:
+        user:
+            name: cherel
+            password: l@o_nel_123
+
     mvc.servlet.path: /api/v1  
+
+jwt:
+    secret : je suis developper backend
+    expirationMs : 86400000 # un jour
+
+
 
 
 logging:
