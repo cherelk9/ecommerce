@@ -14,16 +14,16 @@ import jakarta.validation.Valid;
 
 public interface IProduitController {
 
-    @PostMapping("/products")
+    @PostMapping
     ResponseEntity<?> createProduct(@Valid @RequestBody ProduitRequest produitRequest);
 
-    @GetMapping("/products")
+    @GetMapping
     ResponseEntity<?> getAllProducts();
 
-    @GetMapping("/products/{name}")
+    @GetMapping("/{name}")
     ResponseEntity<?> getProductByName(@PathVariable("name") String name);
 
-    @PutMapping("/products/{productId}")
+    @PutMapping("/{productId}")
     ResponseEntity<?> updateProduct(@PathVariable("productId") Long name,
             @Valid @RequestBody ProduitRequest produitRequest);
 

@@ -44,7 +44,7 @@ public class ProduitServiceImp implements IProduitService {
     @Override
     public ProduitResponse createProduct(ProduitRequest produitRequest) {
 
-        if (produitRequest != null) {
+        if (produitRequest == null) {
             log.info(ProductUtils.PRODUCT_NAME_CANNOT_BE_NULL_OR_EMPTY);
         }
 
