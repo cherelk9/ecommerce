@@ -61,7 +61,7 @@ public class UsersServiceImp implements IUsersService {
          * user.setStatut(new Users().getStatut());
          */
 
-        user.setRole(Role.CUSTOMER);
+        user.setRole(Role.ROLE_ADMIN);
         user.setStatut(Statut.ACTIVE);
 
         var userSaved = usersRepository.save(user);
