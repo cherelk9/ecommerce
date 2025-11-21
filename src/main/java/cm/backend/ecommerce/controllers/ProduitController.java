@@ -32,7 +32,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/products")
 @RequiredArgsConstructor
-@Tag(name = "product", description = "stock de produit")
+@Tag(name = "Products", description = "API pour la gestion des produits (CRUD, recherche, suppression, statistiques)")
 public class ProduitController implements IProduitController {
 
     private final IProduitService produitService;
