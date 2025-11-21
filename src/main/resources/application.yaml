@@ -24,7 +24,7 @@ spring:
     mvc.servlet.path: /api/v1  
 
 jwt:
-    secret : je suis developper backend
+    secret : mySuperJWTSecretKeyForEcommerce123456789!!
     expirationMs : 86400000 # un jour
 
 

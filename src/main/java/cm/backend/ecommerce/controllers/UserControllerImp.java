@@ -25,23 +25,6 @@ public class UserControllerImp implements IUserController {
 
     private final cm.backend.ecommerce.services.interfaces.IUsersService usersService;
 
-    @Operation(summary = "Créer un nouvel utilisateur", description = "Enregistre un nouvel utilisateur dans le système")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Utilisateur créé avec succès", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UsersResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = "Données invalides envoyées dans la requête", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content)
-    })
-    @Override
-    public ResponseEntity<?> createUser(UsersRequestDto dto) {
-
-        if (!UserUtils.isValidEmail(dto.email())) {
-            return new ResponseEntity<>(UserUtils.INVALIDE_EMAIL_FORMAT, HttpStatus.BAD_REQUEST);
-        } else if (usersService.existsByEmail(dto.email())) {
-            return new ResponseEntity<>(UserUtils.USER_EMAIL_ALREADY_EXISTS, HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(usersService.createUser(dto), HttpStatus.CREATED);
-    }
-
     @Operation(summary = "Obtenir un utilisateur par ID", description = "Récupère les informations d’un utilisateur en utilisant son identifiant unique")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Utilisateur trouvé", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UsersResponseDto.class))),

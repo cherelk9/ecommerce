@@ -1,6 +1,5 @@
 package cm.backend.ecommerce.controllers;
 
-// removed incorrect Couchbase Authentication import
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,11 +25,15 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+
+//POST http://localhost:8080/api/v1/authentication/login
 
 @RestController
 @RequestMapping("/authentication")
 @RequiredArgsConstructor
+@Tag(name = "user authentication", description = "API pour l'authentification des utilisateur (login, signup)")
 public class AuthContoller {
 
     private final AuthenticationManager authenticationManager;
@@ -83,7 +86,7 @@ public class AuthContoller {
         return ResponseEntity.status(201).body(response);
     }
 
-    record LoginRequest(String username, String email, String password) {
+    record LoginRequest(String email, String password) {
     }
 
     public record JwtResponse(String token) {
