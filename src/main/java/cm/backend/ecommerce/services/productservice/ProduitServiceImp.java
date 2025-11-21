@@ -50,15 +50,18 @@ public class ProduitServiceImp implements IProduitService {
     }
 
     @Override
+    @Transactional
     public ProduitResponse updateProduct(String name, ProduitRequest produitRequest) {
         return produitRepository.findByName(name).map(
                 prod -> {
 
-                    prod.setName(produitRequest.name());
-                    prod.setDescription(new Produit().getDescription());
-                    prod.setPrice(new Produit().getPrice());
-                    prod.setPublicationDate(produitRequest.publicationDate());
-                    prod.setYearPublication(produitRequest.publicationYear());
+                    Produit product = mapperProduit.toEntity(produitRequest);
+
+                    prod.setName(product.getName());
+                    prod.setDescription(product.getDescription());
+                    prod.setPrice(product.getPrice());
+                    prod.setPublicationDate(product.publicationDate());
+                    prod.setYearPublication(product.publicationYear());
 
                     var produit = produitRepository.save(prod);
                     return mapperProduit.mapperProduitResponse(produit);
