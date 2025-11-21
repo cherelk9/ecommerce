@@ -20,6 +20,11 @@ import cm.backend.ecommerce.exceptions.ProductNotFoundException;
 import cm.backend.ecommerce.services.productservice.interfaces.IProduitService;
 import cm.backend.ecommerce.utils.ProductUtils;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +37,12 @@ public class ProduitController implements IProduitController {
 
     private final IProduitService produitService;
 
-    @Operation(summary = "creer un produit")
+    @Operation(summary = "create a product")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Produit created successfully", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ProduitResponse.class)) }),
+            @ApiResponse(responseCode = "400", description = "Invalid input provided"),
+            @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content) })
     @Override
     @PostMapping
     public ResponseEntity<?> createProduct(@Valid @RequestBody ProduitRequest produitRequest) {
@@ -41,6 +51,13 @@ public class ProduitController implements IProduitController {
     }
 
     @Operation(summary = "visualiser tout les produits")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found product ", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ProduitResponse.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Bad request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Did not find any Foos", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content) })
     @Override
     @GetMapping
     public ResponseEntity<?> getAllProducts() {
@@ -50,6 +67,12 @@ public class ProduitController implements IProduitController {
     }
 
     @Operation(summary = "visualiser tout les produits par leur nom")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "get the Product", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ProduitResponse.class)) }),
+            @ApiResponse(responseCode = "400", description = "Invalid name supplied", content = @Content),
+            @ApiResponse(responseCode = "404", description = "product not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content) })
     @Override
     @GetMapping("/{name}")
     public ResponseEntity<?> getProductByName(@PathVariable("name") String name) {
@@ -59,7 +82,13 @@ public class ProduitController implements IProduitController {
                 : ResponseEntity.notFound().build();
     }
 
-    @Operation(summary = "mettre a jour un produit")
+    @Operation(summary = "Mettre à jour un produit", description = "Permet de modifier les informations d'un produit existant")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Produit mis à jour avec succès", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProduitResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Requête invalide (données non valides)", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Produit introuvable avec l’ID fourni", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content)
+    })
     @Override
     @PutMapping("/{productId}")
     public ResponseEntity<?> updateProduct(
@@ -70,7 +99,13 @@ public class ProduitController implements IProduitController {
         return ResponseEntity.ok(product);
     }
 
-    @Operation(summary = "supprimer un produit par son nom")
+    @Operation(summary = "Supprimer un produit par nom", description = "Supprime un produit correspondant au nom fourni")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Produit supprimé avec succès", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Produit introuvable avec ce nom", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Nom fourni invalide", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content)
+    })
     @Override
     @DeleteMapping("/{name}")
     public ResponseEntity<?> deleteProduct(@PathVariable("name") String name) {
@@ -82,7 +117,13 @@ public class ProduitController implements IProduitController {
         }
     }
 
-    @Operation(summary = "supprimer un produit par son type")
+    @Operation(summary = "Supprimer les produits par type", description = "Supprime tous les produits correspondant au type fourni")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Produits supprimés avec succès", content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "Aucun produit trouvé pour ce type", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Type fourni invalide", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content)
+    })
     @Override
     @DeleteMapping("/{type}")
     public ResponseEntity<?> deleteByType(@PathVariable("type") String type) {
@@ -93,7 +134,13 @@ public class ProduitController implements IProduitController {
                 }).orElseThrow(() -> new ProductNotFoundException(ProductUtils.PRODUCT_NOT_FOUND_BY_TYPE + type));
     }
 
-    @Operation(summary = "compter le nombre de produits par categorie")
+    @Operation(summary = "Compter les produits par catégorie", description = "Renvoie le nombre total de produits appartenant à la catégorie fournie")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Nombre de produits retourné", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Long.class))),
+            @ApiResponse(responseCode = "404", description = "Aucun produit trouvé pour cette catégorie", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Catégorie fournie invalide", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content)
+    })
     @Override
     @GetMapping("/count/{category}")
     public ResponseEntity<?> countProducts(@PathVariable("category") String category) {
@@ -101,7 +148,13 @@ public class ProduitController implements IProduitController {
         return ResponseEntity.ok().body("Total products count: " + count);
     }
 
-    @Operation(summary = "chercher un produit par son nom")
+    @Operation(summary = "Rechercher des produits", description = "Recherche et renvoie les produits correspondant au nom fourni")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Produits trouvés", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ProduitResponse.class)))),
+            @ApiResponse(responseCode = "404", description = "Aucun produit correspondant à ce nom", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Paramètre name manquant ou invalide", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content)
+    })
     @Override
     @GetMapping("/search")
     public ResponseEntity<?> searchProducts(String name) {
