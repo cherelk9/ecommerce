@@ -19,16 +19,20 @@ import cm.backend.ecommerce.dtos.produitsdto.ProduitResponse;
 import cm.backend.ecommerce.exceptions.ProductNotFoundException;
 import cm.backend.ecommerce.services.productservice.interfaces.IProduitService;
 import cm.backend.ecommerce.utils.ProductUtils;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/products")
 @RequiredArgsConstructor
+@Tag(name = "product", description = "stock de produit")
 public class ProduitController implements IProduitController {
 
     private final IProduitService produitService;
 
+    @Operation(summary = "creer un produit")
     @Override
     @PostMapping
     public ResponseEntity<?> createProduct(@Valid @RequestBody ProduitRequest produitRequest) {
@@ -36,6 +40,7 @@ public class ProduitController implements IProduitController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "visualiser tout les produits")
     @Override
     @GetMapping
     public ResponseEntity<?> getAllProducts() {
@@ -44,6 +49,7 @@ public class ProduitController implements IProduitController {
                 : ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "visualiser tout les produits par leur nom")
     @Override
     @GetMapping("/{name}")
     public ResponseEntity<?> getProductByName(@PathVariable("name") String name) {
@@ -53,6 +59,7 @@ public class ProduitController implements IProduitController {
                 : ResponseEntity.notFound().build();
     }
 
+    @Operation(summary = "mettre a jour un produit")
     @Override
     @PutMapping("/{productId}")
     public ResponseEntity<?> updateProduct(
@@ -63,6 +70,7 @@ public class ProduitController implements IProduitController {
         return ResponseEntity.ok(product);
     }
 
+    @Operation(summary = "supprimer un produit par son nom")
     @Override
     @DeleteMapping("/{name}")
     public ResponseEntity<?> deleteProduct(@PathVariable("name") String name) {
@@ -74,6 +82,7 @@ public class ProduitController implements IProduitController {
         }
     }
 
+    @Operation(summary = "supprimer un produit par son type")
     @Override
     @DeleteMapping("/{type}")
     public ResponseEntity<?> deleteByType(@PathVariable("type") String type) {
@@ -84,6 +93,7 @@ public class ProduitController implements IProduitController {
                 }).orElseThrow(() -> new ProductNotFoundException(ProductUtils.PRODUCT_NOT_FOUND_BY_TYPE + type));
     }
 
+    @Operation(summary = "compter le nombre de produits par categorie")
     @Override
     @GetMapping("/count/{category}")
     public ResponseEntity<?> countProducts(@PathVariable("category") String category) {
@@ -91,6 +101,7 @@ public class ProduitController implements IProduitController {
         return ResponseEntity.ok().body("Total products count: " + count);
     }
 
+    @Operation(summary = "chercher un produit par son nom")
     @Override
     @GetMapping("/search")
     public ResponseEntity<?> searchProducts(String name) {

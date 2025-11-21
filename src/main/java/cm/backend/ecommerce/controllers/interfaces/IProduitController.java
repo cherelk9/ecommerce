@@ -39,4 +39,7 @@ public interface IProduitController {
     @GetMapping("/products/search")
     ResponseEntity<?> searchProducts(@RequestParam String name);
 
+    // http://localhost:8080/api/v1/swagger-ui.html
+    // le json:http://localhost:8080/api/v1/v3/api-docs
+
 }

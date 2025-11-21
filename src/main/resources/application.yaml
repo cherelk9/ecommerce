@@ -37,6 +37,13 @@ logging:
         console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs        
+  swagger-ui:
+    path: /swagger-ui.html    
+  packages-to-scan: cm.backend.ecommerce.controllers
+
 
 
 

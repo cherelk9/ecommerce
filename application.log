@@ -1832,3 +1832,146 @@ org.hibernate.PropertyValueException: not-null property references a null or tra
 2025-11-21T11:35:30.874+01:00  INFO 15763 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-11-21T11:35:30.876+01:00  INFO 15763 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2025-11-21T11:35:30.996+01:00  WARN 15763 --- [ecommerce] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unrecognized token 'Generic': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')]
+2025-11-21T11:44:59.143+01:00  INFO 15763 --- [ecommerce] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-21T11:44:59.151+01:00  INFO 15763 --- [ecommerce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-21T11:44:59.165+01:00  INFO 15763 --- [ecommerce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T11:44:59.173+01:00  INFO 15763 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-21T11:44:59.201+01:00  INFO 15763 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-21T12:16:29.346+01:00  INFO 47210 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 17.0.16 with PID 47210 (/home/elembe/Documents/ecommerce/ecommerce/target/classes started by elembe in /home/elembe/Documents/ecommerce/ecommerce)
+2025-11-21T12:16:29.349+01:00  INFO 47210 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-21T12:16:30.091+01:00  INFO 47210 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-21T12:16:30.178+01:00  INFO 47210 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 78 ms. Found 2 JPA repository interfaces.
+2025-11-21T12:16:30.668+01:00  INFO 47210 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-21T12:16:30.689+01:00  INFO 47210 --- [ecommerce] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-21T12:16:30.692+01:00  INFO 47210 --- [ecommerce] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-21T12:16:30.800+01:00  INFO 47210 --- [ecommerce] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-21T12:16:30.800+01:00  INFO 47210 --- [ecommerce] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1376 ms
+2025-11-21T12:16:31.377+01:00  INFO 47210 --- [ecommerce] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-21T12:16:31.407+01:00  INFO 47210 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-21T12:16:31.863+01:00  INFO 47210 --- [ecommerce] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@77eb607e
+2025-11-21T12:16:31.865+01:00  INFO 47210 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-21T12:16:31.960+01:00  WARN 47210 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-21T12:16:31.961+01:00  WARN 47210 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-21T12:16:32.740+01:00  INFO 47210 --- [ecommerce] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T12:16:33.110+01:00  WARN 47210 --- [ecommerce] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-21T12:16:33.200+01:00  INFO 47210 --- [ecommerce] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-11-21T12:16:33.541+01:00  INFO 47210 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-21T12:16:33.579+01:00  INFO 47210 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Started EcommerceApplication in 4.745 seconds (process running for 5.413)
+2025-11-21T12:16:45.764+01:00  INFO 47210 --- [ecommerce] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-21T12:16:45.765+01:00  INFO 47210 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-21T12:16:45.769+01:00  INFO 47210 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-11-21T12:21:30.577+01:00  INFO 47210 --- [ecommerce] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-21T12:21:30.590+01:00  INFO 47210 --- [ecommerce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-21T12:21:30.605+01:00  INFO 47210 --- [ecommerce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T12:21:30.623+01:00  INFO 47210 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-21T12:21:30.649+01:00  INFO 47210 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-21T12:21:32.501+01:00  INFO 50717 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 17.0.16 with PID 50717 (/home/elembe/Documents/ecommerce/ecommerce/target/classes started by elembe in /home/elembe/Documents/ecommerce/ecommerce)
+2025-11-21T12:21:32.504+01:00  INFO 50717 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-21T12:21:33.695+01:00  INFO 50717 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-21T12:21:33.798+01:00  INFO 50717 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 91 ms. Found 2 JPA repository interfaces.
+2025-11-21T12:21:34.550+01:00  INFO 50717 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-21T12:21:34.570+01:00  INFO 50717 --- [ecommerce] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-21T12:21:34.571+01:00  INFO 50717 --- [ecommerce] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-21T12:21:34.694+01:00  INFO 50717 --- [ecommerce] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-21T12:21:34.695+01:00  INFO 50717 --- [ecommerce] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2092 ms
+2025-11-21T12:21:35.356+01:00  INFO 50717 --- [ecommerce] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-21T12:21:35.411+01:00  INFO 50717 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-21T12:21:35.840+01:00  INFO 50717 --- [ecommerce] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@71d99732
+2025-11-21T12:21:35.843+01:00  INFO 50717 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-21T12:21:35.929+01:00  WARN 50717 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-21T12:21:35.930+01:00  WARN 50717 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-21T12:21:37.026+01:00  INFO 50717 --- [ecommerce] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T12:21:37.545+01:00  WARN 50717 --- [ecommerce] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-21T12:21:37.636+01:00  INFO 50717 --- [ecommerce] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-11-21T12:21:38.168+01:00  INFO 50717 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-21T12:21:38.182+01:00  INFO 50717 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Started EcommerceApplication in 6.689 seconds (process running for 7.182)
+2025-11-21T12:21:45.245+01:00  INFO 50717 --- [ecommerce] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-21T12:21:45.246+01:00  INFO 50717 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-21T12:21:45.247+01:00  INFO 50717 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-21T12:24:06.625+01:00  INFO 50717 --- [ecommerce] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-21T12:24:06.632+01:00  INFO 50717 --- [ecommerce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-21T12:24:06.642+01:00  INFO 50717 --- [ecommerce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T12:24:06.649+01:00  INFO 50717 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-21T12:24:06.681+01:00  INFO 50717 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-21T12:26:43.110+01:00  INFO 54077 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 17.0.16 with PID 54077 (/home/elembe/Documents/ecommerce/ecommerce/target/classes started by elembe in /home/elembe/Documents/ecommerce/ecommerce)
+2025-11-21T12:26:43.114+01:00  INFO 54077 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-21T12:26:44.350+01:00  INFO 54077 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-21T12:26:44.457+01:00  INFO 54077 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 96 ms. Found 2 JPA repository interfaces.
+2025-11-21T12:26:45.245+01:00  INFO 54077 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-21T12:26:45.277+01:00  INFO 54077 --- [ecommerce] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-21T12:26:45.278+01:00  INFO 54077 --- [ecommerce] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-21T12:26:45.383+01:00  INFO 54077 --- [ecommerce] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-21T12:26:45.384+01:00  INFO 54077 --- [ecommerce] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2169 ms
+2025-11-21T12:26:46.223+01:00  INFO 54077 --- [ecommerce] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-21T12:26:46.279+01:00  INFO 54077 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-21T12:26:46.714+01:00  INFO 54077 --- [ecommerce] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@164dea80
+2025-11-21T12:26:46.717+01:00  INFO 54077 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-21T12:26:46.796+01:00  WARN 54077 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-21T12:26:46.797+01:00  WARN 54077 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-21T12:26:47.844+01:00  INFO 54077 --- [ecommerce] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T12:26:48.327+01:00  WARN 54077 --- [ecommerce] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-21T12:26:48.401+01:00  INFO 54077 --- [ecommerce] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-11-21T12:26:48.839+01:00  INFO 54077 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-21T12:26:48.854+01:00  INFO 54077 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Started EcommerceApplication in 6.35 seconds (process running for 6.693)
+2025-11-21T12:27:16.996+01:00  INFO 54077 --- [ecommerce] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-21T12:27:16.997+01:00  INFO 54077 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-21T12:27:16.998+01:00  INFO 54077 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-21T12:27:29.608+01:00  INFO 54077 --- [ecommerce] [http-nio-8080-exec-1] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 373 ms
+2025-11-21T12:37:50.968+01:00  INFO 54077 --- [ecommerce] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-21T12:37:50.976+01:00  INFO 54077 --- [ecommerce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-21T12:37:50.987+01:00  INFO 54077 --- [ecommerce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T12:37:50.995+01:00  INFO 54077 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-21T12:37:51.019+01:00  INFO 54077 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-21T12:43:11.465+01:00  INFO 64986 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 17.0.16 with PID 64986 (/home/elembe/Documents/ecommerce/ecommerce/target/classes started by elembe in /home/elembe/Documents/ecommerce/ecommerce)
+2025-11-21T12:43:11.468+01:00  INFO 64986 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-21T12:43:12.232+01:00  INFO 64986 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-21T12:43:12.323+01:00  INFO 64986 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 2 JPA repository interfaces.
+2025-11-21T12:43:12.729+01:00  INFO 64986 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-21T12:43:12.740+01:00  INFO 64986 --- [ecommerce] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-21T12:43:12.740+01:00  INFO 64986 --- [ecommerce] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-21T12:43:12.820+01:00  INFO 64986 --- [ecommerce] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-21T12:43:12.820+01:00  INFO 64986 --- [ecommerce] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1269 ms
+2025-11-21T12:43:13.269+01:00  INFO 64986 --- [ecommerce] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-21T12:43:13.306+01:00  INFO 64986 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-21T12:43:13.586+01:00  INFO 64986 --- [ecommerce] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7bda01da
+2025-11-21T12:43:13.588+01:00  INFO 64986 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-21T12:43:13.647+01:00  WARN 64986 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-21T12:43:13.648+01:00  WARN 64986 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-21T12:43:14.498+01:00  INFO 64986 --- [ecommerce] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T12:43:14.869+01:00  WARN 64986 --- [ecommerce] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-21T12:43:14.936+01:00  INFO 64986 --- [ecommerce] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-11-21T12:43:15.282+01:00  INFO 64986 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-21T12:43:15.299+01:00  INFO 64986 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Started EcommerceApplication in 4.41 seconds (process running for 4.862)
+2025-11-21T12:43:24.864+01:00  INFO 64986 --- [ecommerce] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-21T12:43:24.865+01:00  INFO 64986 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-21T12:43:24.867+01:00  INFO 64986 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-11-21T12:43:25.569+01:00  INFO 64986 --- [ecommerce] [http-nio-8080-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 221 ms
+2025-11-21T12:53:18.853+01:00  INFO 64986 --- [ecommerce] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-21T12:53:18.874+01:00  INFO 64986 --- [ecommerce] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-11-21T12:53:18.892+01:00  INFO 64986 --- [ecommerce] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T12:53:18.902+01:00  INFO 64986 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-11-21T12:53:18.937+01:00  INFO 64986 --- [ecommerce] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-11-21T13:05:22.902+01:00  INFO 84667 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 17.0.16 with PID 84667 (/home/elembe/Documents/ecommerce/ecommerce/target/classes started by elembe in /home/elembe/Documents/ecommerce/ecommerce)
+2025-11-21T13:05:22.905+01:00  INFO 84667 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-11-21T13:05:24.132+01:00  INFO 84667 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-21T13:05:24.251+01:00  INFO 84667 --- [ecommerce] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 2 JPA repository interfaces.
+2025-11-21T13:05:24.836+01:00  INFO 84667 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-11-21T13:05:24.848+01:00  INFO 84667 --- [ecommerce] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-11-21T13:05:24.849+01:00  INFO 84667 --- [ecommerce] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-21T13:05:24.939+01:00  INFO 84667 --- [ecommerce] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-11-21T13:05:24.940+01:00  INFO 84667 --- [ecommerce] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1956 ms
+2025-11-21T13:05:25.532+01:00  INFO 84667 --- [ecommerce] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-21T13:05:25.583+01:00  INFO 84667 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-11-21T13:05:26.018+01:00  INFO 84667 --- [ecommerce] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@8d810f2
+2025-11-21T13:05:26.020+01:00  INFO 84667 --- [ecommerce] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-11-21T13:05:26.098+01:00  WARN 84667 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-21T13:05:26.099+01:00  WARN 84667 --- [ecommerce] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-21T13:05:27.265+01:00  INFO 84667 --- [ecommerce] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-21T13:05:27.746+01:00  WARN 84667 --- [ecommerce] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-21T13:05:27.896+01:00  INFO 84667 --- [ecommerce] [main] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-11-21T13:05:28.787+01:00  INFO 84667 --- [ecommerce] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-11-21T13:05:28.833+01:00  INFO 84667 --- [ecommerce] [main] c.b.ecommerce.EcommerceApplication       : Started EcommerceApplication in 6.763 seconds (process running for 7.259)
+2025-11-21T13:05:36.644+01:00  INFO 84667 --- [ecommerce] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-21T13:05:36.647+01:00  INFO 84667 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-11-21T13:05:36.652+01:00  INFO 84667 --- [ecommerce] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-11-21T13:05:41.855+01:00  INFO 84667 --- [ecommerce] [http-nio-8080-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 638 ms
