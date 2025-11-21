@@ -4,31 +4,33 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cm.backend.ecommerce.dtos.produitsdto.ProduitRequest;
 import cm.backend.ecommerce.dtos.produitsdto.ProduitResponse;
-import cm.backend.ecommerce.mappper.interfaces.IMapperProduit;
-import cm.backend.ecommerce.models.produit.enumarations.Produit;
+import cm.backend.ecommerce.exceptions.ProductNotFoundException;
+import cm.backend.ecommerce.mappper.MapperProduitImp;
+import cm.backend.ecommerce.models.produit.Produit;
 import cm.backend.ecommerce.repositories.ProduitRepository;
 import cm.backend.ecommerce.services.productservice.interfaces.IProduitService;
 import cm.backend.ecommerce.utils.ProductUtils;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ProduitServiceImp implements IProduitService {
 
     private final ProduitRepository produitRepository;
-    private final IMapperProduit mapperProduit;
+    private final MapperProduitImp mapperProduitImp;
 
     @Override
     public List<ProduitResponse> getAllProducts() {
 
         return produitRepository.findAll().stream()
-                .map(mapperProduit::mapperProduitResponse)
+                .map(mapperProduitImp::mapperProduitResponse)
                 .toList();
     }
 
@@ -36,7 +38,7 @@ public class ProduitServiceImp implements IProduitService {
     public Optional<ProduitResponse> getProductByName(String name) {
 
         return produitRepository.findByName(name)
-                .map(mapperProduit::mapperProduitResponse);
+                .map(mapperProduitImp::mapperProduitResponse);
     }
 
     @Override
@@ -46,9 +48,10 @@ public class ProduitServiceImp implements IProduitService {
             log.info(ProductUtils.PRODUCT_NAME_CANNOT_BE_NULL_OR_EMPTY);
         }
 
-        return mapperProduit.mapperProduitResponse(
-                produitRepository.save(
-                        mapperProduit.toEntity(produitRequest)));
+        Produit produit = mapperProduitImp.toEntity(produitRequest);
+        Produit saveProduit = produitRepository.save(produit);
+
+        return mapperProduitImp.mapperProduitResponse(saveProduit);
     }
 
     @Override
@@ -78,28 +81,27 @@ public class ProduitServiceImp implements IProduitService {
     @Override
     public Optional<ProduitResponse> getProductByType(String type) {
         return produitRepository.findByName(type)
-                .map(mapperProduit::mapperProduitResponse);
+                .map(mapperProduitImp::mapperProduitResponse);
     }
 
     @Override
-    @Transactional
-    public void updateProduct(Long productId, ProduitRequest produitRequest) {
+    public ProduitResponse updateProduct(Long productId, ProduitRequest produitRequest) {
+        Produit product = produitRepository.findById(productId).orElseThrow(
+                () -> new ProductNotFoundException(ProductUtils.PRODUCT_NOT_FOUND + productId));
 
-        if (produitRequest == null) {
-            log.info(ProductUtils.PRODUCT_REQUEST_CANNOT_BE_NULL);
-        }
+        mapperProduitImp.updateProductFromDto(produitRequest, product);
 
-        produitRepository.findById(productId).ifPresent(
-                p -> {
-                    Produit e = mapperProduit.toEntity(produitRequest);
-                    p.setName(e.getName());
-                    p.setType(e.getType());
-                    p.setCategory(e.getCategory());
-                    p.setDescription(e.getDescription());
-                    p.setPrice(e.getPrice());
-                    produitRepository.save(p);
+        Produit updateProduct = produitRepository.save(product);
+        return mapperProduitImp.mapperProduitResponse(updateProduct);
+    }
 
-                });
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProduitResponse> searchProductsByName(String name) {
+        return produitRepository.findByNameContainingIgnoreCase(name)
+                .stream()
+                .map(mapperProduitImp::mapperProduitResponse)
+                .toList();
     }
 
 }

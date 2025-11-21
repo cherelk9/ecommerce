@@ -16,15 +16,14 @@ spring:
             hibernate:
                 dialect: org.hibernate.dialect.MySQL8Dialect  
 
-    mvc:
-        servlet:
-            path: /api/v1  
+    mvc.servlet.path: /api/v1  
 
 
 logging:
     level:
         com:
             ecommerce : DEBUG
+        root: INFO
         org:
             springframework : INFO
             hibernate : WARN

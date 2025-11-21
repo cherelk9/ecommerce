@@ -1,13 +1,10 @@
 package cm.backend.ecommerce.mappper;
 
-import java.time.Year;
-
 import org.springframework.stereotype.Component;
 
 import cm.backend.ecommerce.dtos.produitsdto.ProduitRequest;
 import cm.backend.ecommerce.dtos.produitsdto.ProduitResponse;
-import cm.backend.ecommerce.mappper.interfaces.IMapperProduit;
-import cm.backend.ecommerce.models.produit.enumarations.Produit;
+import cm.backend.ecommerce.models.produit.Produit;
 
 /**
  *  private Long id;
@@ -34,25 +31,23 @@ import cm.backend.ecommerce.models.produit.enumarations.Produit;
  */
 
 @Component
-public class MapperProduitImp implements IMapperProduit {
+public class MapperProduitImp {
 
-  @Override
   public Produit toEntity(ProduitRequest dto) {
 
-    Long id = new Produit().getId();
-    var publicationYear = dto.getPublicationDate() != null
-        ? Year.from(dto.getPublicationDate())
-        : null;
+    if (dto == null) {
+      return null;
+    }
 
-    return new Produit(
-        id,
-        dto.getName(),
-        dto.getType(),
-        dto.getCategory(),
-        dto.getDescription(),
-        dto.getPrice(),
-        dto.getPublicationDate(),
-        publicationYear);
+    Produit product = new Produit();
+    product.setName(dto.getName());
+    product.setType(dto.getType());
+    product.setCategory(dto.getCategory());
+    product.setDescription(dto.getDescription());
+    product.setPrice(dto.getPrice());
+    product.setQuantity(dto.getQuantity());
+
+    return product;
   }
 
   /**
@@ -70,16 +65,50 @@ public class MapperProduitImp implements IMapperProduit {
    * 
    */
 
-  @Override
   public ProduitResponse mapperProduitResponse(Produit produit) {
+    if (produit == null) {
+      return null;
+    }
     return new ProduitResponse(
         produit.getName(),
         produit.getType(),
         produit.getCategory(),
         produit.getDescription(),
         produit.getPrice(),
+        produit.getQuantity(),
         produit.getPublicationDate(),
         produit.getYearPublication());
+  }
+
+  public void updateProductFromDto(ProduitRequest dto, Produit produit) {
+
+    if (dto == null) {
+      return;
+    }
+
+    if (dto.getName() != null && !dto.getName().isBlank()) {
+      produit.setName(dto.getName());
+    }
+
+    if (dto.getType() != null && !dto.getType().isBlank()) {
+      produit.setType(dto.getType());
+    }
+
+    if (dto.getCategory() != null && !dto.getCategory().isBlank()) {
+      produit.setCategory(dto.getCategory());
+    }
+
+    if (dto.getDescription() != null && !dto.getDescription().isBlank()) {
+      produit.setDescription(dto.getDescription());
+    }
+
+    if (dto.getPrice() != null) {
+      produit.setPrice(dto.getPrice());
+    }
+
+    if (dto.getQuantity() != null) {
+      produit.setQuantity(dto.getQuantity());
+    }
   }
 
 }

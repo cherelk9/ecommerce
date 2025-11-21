@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import cm.backend.ecommerce.dtos.produitsdto.ProduitRequest;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -13,7 +14,7 @@ import jakarta.validation.Valid;
 
 public interface IProduitController {
 
-    @PostMapping(value = "/products", consumes = "application/json")
+    @PostMapping("/products")
     ResponseEntity<?> createProduct(@Valid @RequestBody ProduitRequest produitRequest);
 
     @GetMapping("/products")
@@ -34,5 +35,8 @@ public interface IProduitController {
 
     @GetMapping("/products/count/{category}")
     ResponseEntity<?> countProducts(@PathVariable("category") String category);
+
+    @GetMapping("/products/search")
+    ResponseEntity<?> searchProducts(@RequestParam String name);
 
 }

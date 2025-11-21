@@ -17,6 +17,7 @@ public class ProduitResponse {
         private String category;
         private String description;
         private Double price;
+        private Integer quantity;
         private Instant publicationDate;
         private Year publicationYear;
 

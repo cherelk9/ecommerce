@@ -1,11 +1,14 @@
 package cm.backend.ecommerce.controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import cm.backend.ecommerce.controllers.interfaces.IProduitController;
 import cm.backend.ecommerce.dtos.produitsdto.ProduitRequest;
+import cm.backend.ecommerce.dtos.produitsdto.ProduitResponse;
 import cm.backend.ecommerce.exceptions.ProductNotFoundException;
 import cm.backend.ecommerce.services.productservice.interfaces.IProduitService;
 import cm.backend.ecommerce.utils.ProductUtils;
@@ -19,11 +22,8 @@ public class ProduitController implements IProduitController {
 
     @Override
     public ResponseEntity<?> createProduct(ProduitRequest produitRequest) {
-        if (produitRequest.getName() == null || produitRequest.getName().isBlank()) {
-            throw new IllegalArgumentException(ProductUtils.PRODUCT_NAME_CANNOT_BE_NULL_OR_EMPTY);
-        }
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(produitService.createProduct(produitRequest));
+        ProduitResponse response = produitService.createProduct(produitRequest);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @Override
@@ -43,8 +43,8 @@ public class ProduitController implements IProduitController {
 
     @Override
     public ResponseEntity<?> updateProduct(Long productId, ProduitRequest produitRequest) {
-        produitService.updateProduct(productId, produitRequest);
-        return ResponseEntity.ok().body("Product updated successfully");
+        ProduitResponse product = produitService.updateProduct(productId, produitRequest);
+        return ResponseEntity.ok(product);
     }
 
     @Override
@@ -70,6 +70,12 @@ public class ProduitController implements IProduitController {
     public ResponseEntity<?> countProducts(String category) {
         int count = produitService.countAllProduitByCategory(category);
         return ResponseEntity.ok().body("Total products count: " + count);
+    }
+
+    @Override
+    public ResponseEntity<?> searchProducts(String name) {
+        List<ProduitResponse> products = produitService.searchProductsByName(name);
+        return ResponseEntity.ok(products);
     }
 
 }

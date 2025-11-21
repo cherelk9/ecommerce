@@ -16,11 +16,13 @@ public interface IProduitService {
 
     ProduitResponse createProduct(ProduitRequest produitRequest);
 
-    void updateProduct(Long productId, ProduitRequest produitRequest);
+    ProduitResponse updateProduct(Long productId, ProduitRequest produitRequest);
 
     void deleteProduct(String name);
 
     void deleteAllProductsByType(String type);
+
+    List<ProduitResponse> searchProductsByName(String name);
 
     int countAllProduitByCategory(String category);
 
