@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import cm.backend.ecommerce.models.enumarations.Role;
 import cm.backend.ecommerce.models.enumarations.Statut;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class Users implements Serializable {
     private String password;
     private int age;
     @Enumerated(jakarta.persistence.EnumType.STRING)
+    @Column(length = 50)
     private Role role;
     @Enumerated(jakarta.persistence.EnumType.STRING)
     private Statut statut;

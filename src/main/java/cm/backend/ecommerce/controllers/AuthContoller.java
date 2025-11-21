@@ -26,6 +26,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 //POST http://localhost:8080/api/v1/authentication/login
@@ -49,7 +50,7 @@ public class AuthContoller {
             @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content)
     })
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password()));
@@ -67,7 +68,7 @@ public class AuthContoller {
             @ApiResponse(responseCode = "500", description = "Erreur interne du serveur", content = @Content)
     })
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@RequestBody UsersRequestDto loginRequest) {
+    public ResponseEntity<?> signUp(@Valid @RequestBody UsersRequestDto loginRequest) {
         if (usersRepository.existsByEmail(loginRequest.email()) ||
                 usersRepository.existsByUsername(loginRequest.username())) {
             return ResponseEntity.badRequest().body(UserUtils.EXIST_By_NAME_OR_EMAIL);

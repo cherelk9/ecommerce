@@ -13,8 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import cm.backend.ecommerce.utils.JwtUtils;
+import cm.backend.ecommerce.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -23,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
-    private final JwtUtils jwtUtils; // si tu l’utilises
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
@@ -49,7 +50,8 @@ public class SecurityConfig {
                                 "/swagger-ui.html")
                         .permitAll()
                         .anyRequest().authenticated())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
